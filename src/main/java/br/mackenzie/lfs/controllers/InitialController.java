@@ -13,7 +13,7 @@ public class InitialController {
     @Autowired
     private SomeService service;
 
-    @RequestMapping(value = {"/","/index","/home"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/","/index"}, method = RequestMethod.GET)
     private ModelAndView indexPage(){
 
         service.someOperation();
