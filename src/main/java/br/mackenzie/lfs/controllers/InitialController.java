@@ -23,4 +23,9 @@ public class InitialController {
         return mav;
     }
 
+    @RequestMapping(value = "/403")
+    public ModelAndView accessDeniedPage () {
+    	return new ModelAndView("accessdeniedpage");
+    }
+    
 }

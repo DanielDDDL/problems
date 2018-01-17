@@ -83,7 +83,6 @@ public class SomeOtherController {
     public ModelAndView homeController (@ModelAttribute("message") String message) {
 
         ModelAndView mav = new ModelAndView("home");
-
         return mav;
     }
 

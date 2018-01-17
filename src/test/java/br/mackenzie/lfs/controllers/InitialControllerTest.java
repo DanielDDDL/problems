@@ -34,10 +34,10 @@ public class InitialControllerTest {
         doNothing().when(service).someOperation();
     }
 
-    @Test
-    public void testingSomething() throws Exception {
-        mockMvc.perform(get("/")).andExpect(view().name("index"))
-                                              .andExpect(model().attribute("message","Hello World!"));
-    }
+//    @Test
+//    public void testingSomething() throws Exception {
+//        mockMvc.perform(get("/")).andExpect(view().name("index"))
+//                                              .andExpect(model().attribute("message","Hello World!"));
+//    }
 
 }
