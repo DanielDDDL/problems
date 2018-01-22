@@ -7,9 +7,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class TestingThymeleafController {
 
-	@RequestMapping(value = "/templating")
+	@RequestMapping(value = "/th")
 	public ModelAndView getHomePage() {
-		return new ModelAndView("home");
+		return new ModelAndView("templates/home");
+	}
+	
+	@RequestMapping(value = "/jsp")
+	public ModelAndView getAnotherPage() {
+		return new ModelAndView("pages/index");
 	}
 	
 }

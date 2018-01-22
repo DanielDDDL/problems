@@ -18,7 +18,7 @@ public class InitialController {
 
         service.someOperation();
 
-        ModelAndView mav = new ModelAndView("index");
+        ModelAndView mav = new ModelAndView("pages/index");
         mav.addObject("message","Hello World!");
         return mav;
     }

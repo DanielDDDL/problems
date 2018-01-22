@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Just a page, testing a tempalte engine</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div>
+
+	<p>This is just a page with a unique name. No big deal.</p>    
+
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>
