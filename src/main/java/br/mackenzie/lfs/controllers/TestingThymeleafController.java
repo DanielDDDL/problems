@@ -9,12 +9,12 @@ public class TestingThymeleafController {
 
 	@RequestMapping(value = "/th")
 	public ModelAndView getHomePage() {
-		return new ModelAndView("home");
+		return new ModelAndView("thymeleaf/home");
 	}
 	
 	@RequestMapping(value = "/jsp")
 	public ModelAndView getAnotherPage() {
-		return new ModelAndView("index");
+		return new ModelAndView("jsp/index");
 	}
 	
 }

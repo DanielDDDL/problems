@@ -18,13 +18,12 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 @EnableWebMvc
 @ComponentScan(basePackages = { "br.mackenzie.lfs.controllers" })
 public class WebConfiguration extends WebMvcConfigurerAdapter {
-	
-
+		
 	@Bean
 	public ViewResolver thymeleafViewResolver() {
 		
 		TemplateResolver templateResolver = new ServletContextTemplateResolver();
-		templateResolver.setPrefix("/WEB-INF/templates/");
+		templateResolver.setPrefix("/WEB-INF/");
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML5");
 				
@@ -34,23 +33,30 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
 		resolver.setTemplateEngine(templateEngine);
 		resolver.setOrder(Ordered.HIGHEST_PRECEDENCE);
+		resolver.setViewNames(thymeleafViewNames());
 		
 		return resolver;
 	}
 
+	
 	@Bean
 	public ViewResolver jspViewResolver () {
-		
-		System.out.println("This was used");
-		
+				
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setViewClass(JstlView.class);
-		resolver.setPrefix("/WEB-INF/pages/");
+		resolver.setPrefix("/WEB-INF/");
 		resolver.setSuffix(".jsp");
 		resolver.setOrder(Ordered.LOWEST_PRECEDENCE);
+		resolver.setViewNames(jspViewNames());
 		return resolver;
 	}
 	
+	private String [] thymeleafViewNames() {
+		return new String [] {"thymeleaf/*"};
+	}
 	
+	private String [] jspViewNames() {
+		return new String [] {"jsp/*"};
+	}
 
 }
