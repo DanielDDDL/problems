@@ -22,6 +22,8 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 	@Bean
 	public ViewResolver thymeleafViewResolver() {
 		
+		String [] thymeleafViewNames = new String [] {"thymeleaf/*"};
+		
 		TemplateResolver templateResolver = new ServletContextTemplateResolver();
 		templateResolver.setPrefix("/WEB-INF/");
 		templateResolver.setSuffix(".html");
@@ -33,7 +35,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
 		resolver.setTemplateEngine(templateEngine);
 		resolver.setOrder(Ordered.HIGHEST_PRECEDENCE);
-		resolver.setViewNames(thymeleafViewNames());
+		resolver.setViewNames(thymeleafViewNames);
 		
 		return resolver;
 	}
@@ -47,16 +49,8 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 		resolver.setPrefix("/WEB-INF/");
 		resolver.setSuffix(".jsp");
 		resolver.setOrder(Ordered.LOWEST_PRECEDENCE);
-		resolver.setViewNames(jspViewNames());
 		return resolver;
 	}
 	
-	private String [] thymeleafViewNames() {
-		return new String [] {"thymeleaf/*"};
-	}
-	
-	private String [] jspViewNames() {
-		return new String [] {"jsp/*"};
-	}
 
 }

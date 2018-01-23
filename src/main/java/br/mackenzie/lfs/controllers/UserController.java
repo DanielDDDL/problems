@@ -13,7 +13,7 @@ public class UserController {
 		
 		String messageValue = "Successfully logged in.";
 		
-		ModelAndView mav = new ModelAndView("user");
+		ModelAndView mav = new ModelAndView("jsp/user");
 		mav.addObject("message", messageValue);
 		return mav;
 		

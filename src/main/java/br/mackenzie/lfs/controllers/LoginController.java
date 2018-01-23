@@ -19,7 +19,7 @@ public class LoginController {
         if (principal != null)
             return new ModelAndView("redirect:/users/home");
 
-        ModelAndView mav = new ModelAndView("login");
+        ModelAndView mav = new ModelAndView("jsp/login");
 
         if (error)
             return mav.addObject("errorMessage", "Password or username is wrong!");
