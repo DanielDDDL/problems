@@ -39,5 +39,4 @@ public class InitialControllerTest {
         mockMvc.perform(get("/")).andExpect(view().name("index"))
                                               .andExpect(model().attribute("message","Hello World!"));
     }
-
 }
