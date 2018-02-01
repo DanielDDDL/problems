@@ -1,14 +1,17 @@
 package br.mackenzie.lfs.controllers;
 
-import br.mackenzie.lfs.model.Person;
-import br.mackenzie.lfs.service.SomeOtherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+
+import br.mackenzie.lfs.model.Person;
+import br.mackenzie.lfs.service.SomeOtherService;
 
 @Controller
 public class SomeOtherController {
@@ -18,7 +21,7 @@ public class SomeOtherController {
 
     @RequestMapping(value = "/something", method = RequestMethod.GET)
     public ModelAndView someEndPoint(){
-        ModelAndView mav = new ModelAndView("index");
+        ModelAndView mav = new ModelAndView("jsp/index");
         mav.addObject("message", service.someOtherMethod("Something"));
         return mav;
     }
@@ -31,7 +34,7 @@ public class SomeOtherController {
 
     @RequestMapping(value = "/test/redirect")
     public ModelAndView redirectEntry (@ModelAttribute("message") String message){
-        ModelAndView mav = new ModelAndView("index");
+        ModelAndView mav = new ModelAndView("jsp/index");
         mav.addObject("message", message);
         return mav;
     }
@@ -57,7 +60,7 @@ public class SomeOtherController {
             System.out.println(person.getSomeOtherInformation());
         }
 
-        ModelAndView mav = new ModelAndView("person");
+        ModelAndView mav = new ModelAndView("jsp/person");
         mav.addObject("person",person);
         return mav;
     }
@@ -82,8 +85,7 @@ public class SomeOtherController {
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public ModelAndView homeController (@ModelAttribute("message") String message) {
 
-        ModelAndView mav = new ModelAndView("home");
-
+        ModelAndView mav = new ModelAndView("jsp/home");
         return mav;
     }
 

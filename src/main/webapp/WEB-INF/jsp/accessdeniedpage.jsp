@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    ${message}
+    <p>You cannot access this page. Although I'm pretty sure this won't show up.</p>
 
 </body>
 </html>

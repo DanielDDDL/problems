@@ -18,9 +18,14 @@ public class InitialController {
 
         service.someOperation();
 
-        ModelAndView mav = new ModelAndView("index");
+        ModelAndView mav = new ModelAndView("jsp/index");
         mav.addObject("message","Hello World!");
         return mav;
     }
 
+    @RequestMapping(value = "/403")
+    public ModelAndView accessDeniedPage () {
+    	return new ModelAndView("jsp/accessdeniedpage");
+    }
+    
 }
