@@ -1,4 +1,4 @@
-<%--
+<%--Strng
   User: Daniel
   Date: 01/02/2018
 --%>

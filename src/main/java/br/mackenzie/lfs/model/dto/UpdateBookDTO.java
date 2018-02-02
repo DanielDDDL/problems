@@ -1,9 +1,11 @@
 package br.mackenzie.lfs.model.dto;
 
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 public class UpdateBookDTO {
 
+    @Id
     private Long id;
     private String title;
     private String author;
