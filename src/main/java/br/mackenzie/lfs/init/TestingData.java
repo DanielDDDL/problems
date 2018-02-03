@@ -1,7 +1,5 @@
 package br.mackenzie.lfs.init;
 
-import java.time.LocalDateTime;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.stereotype.Component;
 import br.mackenzie.lfs.Application;
 import br.mackenzie.lfs.dao.BookRepository;
 import br.mackenzie.lfs.model.Book;
-import br.mackenzie.lfs.model.Person;
 import br.mackenzie.lfs.model.dto.TestingDTO;
 import br.mackenzie.lfs.util.PersistedEntitiesObjectMapper;
 
@@ -30,16 +27,16 @@ public class TestingData {
     @EventListener(ApplicationReadyEvent.class)
     public void run() {
 
-        LocalDateTime initialValue = LocalDateTime.now();
-
-        Book book = new Book();
-        book.setTitle("First title");
-        book.setAuthor("First author");
-        book.setDateWhenRegistered(initialValue);
-        book.setDateWhenLastEdited(initialValue);
-
-        Book registered = repo.saveAndFlush(book);
-        logger.info(registered.toString());
+//        LocalDateTime initialValue = LocalDateTime.now();
+//
+//        Book book = new Book();
+//        book.setTitle("First title");
+//        book.setAuthor("First author");
+//        book.setDateWhenRegistered(initialValue);
+//        book.setDateWhenLastEdited(initialValue);
+//
+//        Book registered = repo.saveAndFlush(book);
+//        logger.info(registered.toString());
 
 //        UpdateBookDTO updateBook = new UpdateBookDTO();
 //        updateBook.setId(registered.getId());
@@ -56,12 +53,13 @@ public class TestingData {
 //        logger.info("From db: " + gettingBook.toString());
 
         TestingDTO testingDTO = new TestingDTO();
-        testingDTO.setId(registered.getId());
-        testingDTO.setTitle("New title from testing");
+        testingDTO.setId(new Long(1));
+        testingDTO.setTitle("Some random title");
         
         Book newUpdatedBook = mapper.convertDTOToEntity(testingDTO, Book.class);
-        Book updatedFromDatabase = repo.saveAndFlush(newUpdatedBook);
-        logger.info("Final result: " + updatedFromDatabase.toString());
+        logger.info(newUpdatedBook.toString());
+//        Book updatedFromDatabase = repo.saveAndFlush(newUpdatedBook);
+//        logger.info("Final result: " + updatedFromDatabase.toString());
         
         
         
