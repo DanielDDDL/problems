@@ -1,22 +1,19 @@
 package br.mackenzie.lfs.util;
 
-import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import java.lang.reflect.Field;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Id;
-import java.lang.reflect.Field;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import br.mackenzie.lfs.model.dto.DTO;
 
 @Component
 public class PersistedEntitiesObjectMapper {
 
     private EntityManager entityManager;
-    private static final ModelMapper modelMapper = new ModelMapper();
-
-    Logger logger = LoggerFactory.getLogger(PersistedEntitiesObjectMapper.class);
 
     @Autowired
     public PersistedEntitiesObjectMapper (EntityManager entityManager) {
@@ -24,21 +21,18 @@ public class PersistedEntitiesObjectMapper {
     }
 
     /**
-     * @param entityClass, the <code>Class</code> defining the Entity to which the dto object will be converted to
+     * @param entityClass, the Class defining the Entity to which the dto object will be converted to
      * @param dto, the source object to be converted
      * @return the converted object
      * */
-    public <T> T convertDTOToEntity (Object dto, Class<T> entityClass) {
+    public <T> T convertDTOToEntity (DTO <T> dto, Class<T> entityClass) {
 
         Object id = getEntityId(dto);
         if (id == null) {
-            logger.info("Id is null");
-            return modelMapper.map(dto, entityClass);
+            return dto.convertToNonExistingEntity(entityClass);
         } else {
-            logger.info("Id is not null");
             T persistedObject = entityManager.find(entityClass,id);
-            modelMapper.map(dto,persistedObject);
-            return persistedObject;
+            return dto.convertToExistingEntity(persistedObject);
         }
 
     }

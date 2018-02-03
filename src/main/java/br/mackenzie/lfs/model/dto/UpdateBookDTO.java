@@ -1,7 +1,8 @@
 package br.mackenzie.lfs.model.dto;
 
-import javax.persistence.Id;
 import java.time.LocalDateTime;
+
+import javax.persistence.Id;
 
 public class UpdateBookDTO {
 

@@ -1,18 +1,16 @@
 package br.mackenzie.lfs.controllers;
 
-import br.mackenzie.lfs.model.Book;
-import br.mackenzie.lfs.model.dto.UpdateBookDTO;
-import br.mackenzie.lfs.util.ObjectMapperUtils;
+import static org.junit.Assert.assertEquals;
+
+import java.time.LocalDateTime;
+
 import org.junit.Test;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.ui.ModelMap;
 
-import java.time.LocalDateTime;
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.assertEquals;
+import br.mackenzie.lfs.model.Book;
+import br.mackenzie.lfs.model.dto.UpdateBookDTO;
 
 public class ModelMapperTest {
 

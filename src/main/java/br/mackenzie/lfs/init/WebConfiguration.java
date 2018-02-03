@@ -14,8 +14,6 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
-import javax.persistence.EntityManager;
-
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "br.mackenzie.lfs.controllers" })
