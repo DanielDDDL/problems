@@ -2,6 +2,7 @@ package br.mackenzie.lfs.controllers;
 
 import br.mackenzie.lfs.exceptions.DatabaseException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -11,7 +12,7 @@ public class ExceptionHandlerController {
 
     @RequestMapping("/raisedatabaseexception")
     public ModelAndView raiseDatabaseException() {
-        throw new DatabaseException("Olá, Marilene.");
+        throw new DatabaseException("Olá, Marilene ", 5);
     }
 
     @RequestMapping("/raiseillegalstateexception")
@@ -20,20 +21,10 @@ public class ExceptionHandlerController {
     }
 
     @ExceptionHandler(DatabaseException.class)
-    public ModelAndView databaseExceptionHandler (Exception exception) {
+    public ModelAndView databaseException (DatabaseException exception) {
 
         ModelAndView mv = new ModelAndView("thymeleaf/simplemessage");
-        String message = "Database exception: " + exception.toString() ;
-        mv.addObject("message", message);
-        return mv;
-
-    }
-
-    @ExceptionHandler(IllegalStateException.class)
-    public ModelAndView illegalStateException (IllegalStateException exception) {
-
-        ModelAndView mv = new ModelAndView("thymeleaf/simplemessage");
-        String message = "Illegal state exception: " + exception.toString() ;
+        String message = "Local handler: " + exception.toString() + exception.getQnt();
         mv.addObject("message", message);
         return mv;
 
