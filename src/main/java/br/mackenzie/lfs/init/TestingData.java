@@ -9,8 +9,6 @@ import org.springframework.stereotype.Component;
 
 import br.mackenzie.lfs.Application;
 import br.mackenzie.lfs.dao.BookRepository;
-import br.mackenzie.lfs.model.Book;
-import br.mackenzie.lfs.model.dto.TestingDTO;
 import br.mackenzie.lfs.util.PersistedEntitiesObjectMapper;
 
 @Component
@@ -52,12 +50,12 @@ public class TestingData {
 //        Book gettingBook = repo.findOne(newUpdatedBook.getId());
 //        logger.info("From db: " + gettingBook.toString());
 
-        TestingDTO testingDTO = new TestingDTO();
-        testingDTO.setId(new Long(1));
-        testingDTO.setTitle("Some random title");
-        
-        Book newUpdatedBook = mapper.convertDTOToEntity(testingDTO, Book.class);
-        logger.info(newUpdatedBook.toString());
+//        TestingDTO testingDTO = new TestingDTO();
+//        testingDTO.setId(new Long(1));
+//        testingDTO.setTitle("Some random title");
+//        
+//        Book newUpdatedBook = mapper.convertDTOToEntity(testingDTO, Book.class);
+//        logger.info(newUpdatedBook.toString());
 //        Book updatedFromDatabase = repo.saveAndFlush(newUpdatedBook);
 //        logger.info("Final result: " + updatedFromDatabase.toString());
         

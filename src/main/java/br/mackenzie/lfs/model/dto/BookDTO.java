@@ -1,24 +1,22 @@
 package br.mackenzie.lfs.model.dto;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Id;
 
-public class UpdateBookDTO {
+import br.mackenzie.lfs.model.Book;
 
-    @Id
+public class BookDTO extends DTO<Book,BookDTO>{
+
+	@Id
     private Long id;
     private String title;
     private String author;
-    private LocalDateTime dateWhenLastEdited;
 
-    public UpdateBookDTO() { }
+    public BookDTO() { }
 
-    public UpdateBookDTO(Long id, String title, String author, LocalDateTime dateWhenLastEdited) {
+    public BookDTO(Long id, String title, String author) {
         this.id = id;
         this.title = title;
         this.author = author;
-        this.dateWhenLastEdited = dateWhenLastEdited;
     }
 
     public Long getId() {
@@ -43,14 +41,6 @@ public class UpdateBookDTO {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public LocalDateTime getDateWhenLastEdited() {
-        return dateWhenLastEdited;
-    }
-
-    public void setDateWhenLastEdited(LocalDateTime dateWhenLastEdited) {
-        this.dateWhenLastEdited = dateWhenLastEdited;
     }
 
 }
