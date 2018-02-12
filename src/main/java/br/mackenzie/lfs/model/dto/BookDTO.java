@@ -1,6 +1,8 @@
 package br.mackenzie.lfs.model.dto;
 
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import br.mackenzie.lfs.model.Book;
 
@@ -8,7 +10,13 @@ public class BookDTO extends DTO<Book,BookDTO>{
 
 	@Id
     private Long id;
+	
+	@NotNull
+	@Size(min = 2, max = 30)
     private String title;
+	
+	@NotNull
+	@Size(min = 2, max = 30)
     private String author;
 
     public BookDTO() { }
