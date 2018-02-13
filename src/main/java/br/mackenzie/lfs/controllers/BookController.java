@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,21 +40,15 @@ public class BookController {
 	}
 	
 	@RequestMapping(value = "/book/new", method = RequestMethod.POST)
-	public ModelAndView proccessBookCreation (@Valid @ModelAttribute BookDTO bookDTO, BindingResult results) {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		if(results.hasErrors()) {
-			mav.addObject("book", bookDTO);
-			mav.setViewName("book_add");
-			return mav;
-		}
+	public String proccessBookCreation (@ModelAttribute("book") @Valid BookDTO bookDTO, BindingResult results, ModelMap model) {
+				
+		if(results.hasErrors()) 
+			return "book_add";
 		
 		service.addBook(em.convertDTOToEntity(bookDTO, Book.class));
 		
-		mav.setViewName("thymeleaf/simplemessage");
-		mav.addObject("message", "Livro cadastrado com sucesso");
-		return mav;
+		model.addAttribute("message", "Book successfully registered");
+		return "thymeleaf/simplemessage";
 	}
 	
 	@RequestMapping(value = "/book/edit/{id}", method = RequestMethod.GET)
@@ -68,7 +63,7 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/book/edit", method = RequestMethod.POST)
-	public ModelAndView initEditing (@Valid @ModelAttribute BookDTO bookDTO, BindingResult results) {
+	public ModelAndView initEditing (@ModelAttribute @Valid BookDTO bookDTO, BindingResult results) {
 				
 		ModelAndView mav = new ModelAndView();
 		
@@ -81,7 +76,7 @@ public class BookController {
 		service.editBook(em.convertDTOToEntity(bookDTO, Book.class));
 		
 		mav.setViewName("thymeleaf/simplemessage");
-		mav.addObject("message", "Livro editado com sucesso");
+		mav.addObject("message", "Book successfully edited");
 		return mav;
 	}
 	

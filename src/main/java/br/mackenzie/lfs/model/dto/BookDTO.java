@@ -12,11 +12,11 @@ public class BookDTO extends DTO<Book,BookDTO>{
     private Long id;
 	
 	@NotNull
-	@Size(min = 2, max = 30)
+	@Size(min = 2, max = 30, message = "Title must be between 2 and 30 characters")
     private String title;
 	
 	@NotNull
-	@Size(min = 2, max = 30)
+	@Size(min = 2, max = 30, message = "Author's name must be between 2 and 30 characters")
     private String author;
 
     public BookDTO() { }
@@ -50,5 +50,43 @@ public class BookDTO extends DTO<Book,BookDTO>{
     public void setAuthor(String author) {
         this.author = author;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((author == null) ? 0 : author.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BookDTO other = (BookDTO) obj;
+		if (author == null) {
+			if (other.author != null)
+				return false;
+		} else if (!author.equals(other.author))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		
+		return true;
+	}
 
 }

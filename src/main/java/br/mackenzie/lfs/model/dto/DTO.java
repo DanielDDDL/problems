@@ -24,5 +24,5 @@ public abstract class DTO<T,D> {
 	public D convertEntityToDto(T entity, Class<D> dtoClass) {
 		return ObjectMapperUtils.map(entity, dtoClass);
 	}
-
+	
 }
