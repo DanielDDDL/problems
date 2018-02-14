@@ -7,10 +7,7 @@ import javax.validation.constraints.Size;
 import br.mackenzie.lfs.model.Book;
 import br.mackenzie.lfs.model.annotations.Unique;
 
-@Unique.List({
-	@Unique(entityClass = Book.class, fieldName = "title", message = "Title must be unique"),
-	@Unique(entityClass = Book.class, fieldName = "author", message = "Author must be unique")
-})
+@Unique(entityClass = Book.class, fieldName = "title", message = "Title must be unique")
 public class BookDTO extends DTO<Book,BookDTO>{
 
 	@Id

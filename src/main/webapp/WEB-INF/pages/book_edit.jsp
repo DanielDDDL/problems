@@ -27,6 +27,8 @@
         
         <form:hidden path="id"/>
         
+        <form:errors path="" cssClass="error" />
+        
         <table>
             <tbody>
             <tr>

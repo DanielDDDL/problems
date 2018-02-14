@@ -24,6 +24,9 @@
     <h1>Add book page</h1>
     <p>Here you can add a new book.</p>
     <form:form method="POST" modelAttribute="book" action="${pageContext.request.contextPath}/book/new">
+    
+    	<form:errors path="" cssClass="error" />
+    
         <table>
             <tbody>
             
