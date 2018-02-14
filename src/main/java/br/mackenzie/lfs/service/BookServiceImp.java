@@ -36,5 +36,5 @@ public class BookServiceImp implements BookService {
 	public Book getBook(Long id) {
 		return repo.findOne(id);
 	}
-
+	
 }

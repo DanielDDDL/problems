@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import br.mackenzie.lfs.model.Book;
+import br.mackenzie.lfs.model.annotations.Unique;
 
 public class BookDTO extends DTO<Book,BookDTO>{
 
@@ -13,6 +14,7 @@ public class BookDTO extends DTO<Book,BookDTO>{
 	
 	@NotNull
 	@Size(min = 2, max = 30, message = "Title must be between 2 and 30 characters")
+	@Unique(entityClass = Book.class, fieldName = "title", message = "Title must be unique")
     private String title;
 	
 	@NotNull
