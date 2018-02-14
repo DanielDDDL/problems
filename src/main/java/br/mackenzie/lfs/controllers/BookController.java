@@ -63,21 +63,15 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/book/edit", method = RequestMethod.POST)
-	public ModelAndView initEditing (@ModelAttribute @Valid BookDTO bookDTO, BindingResult results) {
-				
-		ModelAndView mav = new ModelAndView();
-		
-		if(results.hasErrors()) {
-			mav.addObject("book", bookDTO);
-			mav.setViewName("book_edit");
-			return mav;
-		}
+	public String processEditing (@ModelAttribute("book") @Valid BookDTO bookDTO, BindingResult results, ModelMap model) {
+
+		if(results.hasErrors()) 
+			return "book_edit";
 		
 		service.editBook(em.convertDTOToEntity(bookDTO, Book.class));
 		
-		mav.setViewName("thymeleaf/simplemessage");
-		mav.addObject("message", "Book successfully edited");
-		return mav;
+		model.addAttribute("message", "Book successfully edited");
+		return "thymeleaf/simplemessage";
 	}
 	
 }

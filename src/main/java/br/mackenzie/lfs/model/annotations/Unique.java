@@ -1,8 +1,7 @@
 package br.mackenzie.lfs.model.annotations;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Documented;
@@ -14,7 +13,7 @@ import javax.validation.Payload;
 
 import br.mackenzie.lfs.model.validator.UniqueValidator;
 
-@Target({METHOD, FIELD, ANNOTATION_TYPE})
+@Target({TYPE, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = UniqueValidator.class)
 @Documented
@@ -27,4 +26,14 @@ public @interface Unique {
     
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
+
+    /**
+     * In case of multiple fields
+     * */
+    @Target({TYPE, ANNOTATION_TYPE})
+    @Retention(RUNTIME)
+    @Documented
+    @interface List {
+        Unique[] value();
+    }
 }
