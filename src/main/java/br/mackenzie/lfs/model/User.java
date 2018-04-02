@@ -1,6 +1,7 @@
 package br.mackenzie.lfs.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -15,10 +16,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
+@Slf4j
 public class User implements UserDetails, Serializable {
 
 	@Id
@@ -43,10 +48,16 @@ public class User implements UserDetails, Serializable {
 			   inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
 	private List<Authority> authorities;
 
-	public User () { }
+	public User () {
+		authorities = new ArrayList<>();
+	}
 	
 	public User(Long id, String name, Integer age, String username, String password, List<Authority> authorities) {
+
 		super();
+
+		authorities = new ArrayList<>();
+
 		this.id = id;
 		this.name = name;
 		this.age = age;
@@ -126,5 +137,12 @@ public class User implements UserDetails, Serializable {
 		this.authorities = authorities;
 	}
 
+	public void addAuthority (Authority authority){
+		if(this.authorities == null)
+			log.info("Authorities is null");
+		else
+			this.authorities.add(authority);
+
+	}
 	
 }

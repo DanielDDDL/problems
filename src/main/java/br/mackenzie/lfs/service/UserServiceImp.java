@@ -9,14 +9,19 @@ import org.springframework.stereotype.Service;
 import br.mackenzie.lfs.dao.UserRepository;
 
 @Service
-public class UserServiceImp implements UserService, UserDetailsService {
+public class UserServiceImp implements UserDetailsService {
 
 	@Autowired
 	private UserRepository repo;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return repo.findByUsername(username);
+
+		UserDetails user = repo.findByUsername(username);
+		if(user == null)
+			throw new UsernameNotFoundException("Not found");
+
+		return user;
 	}
 
 }

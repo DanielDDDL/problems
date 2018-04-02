@@ -13,6 +13,7 @@
 <body>
 
     <p>This is a normal page.</p>
+    <p>User page.</p>
     
     <form id="logout" action="/logout" method="post" >
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

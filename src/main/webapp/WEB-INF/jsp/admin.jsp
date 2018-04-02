@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: daniel
@@ -13,14 +12,13 @@
 </head>
 <body>
 
-    <p>You cannot access this page. Although I'm pretty sure this won't show up.</p>
-    <p>And it did! But now you can logout.</p>
+    <p>This is a normal page. But only admins can access it</p>
+    
     <form id="logout" action="/logout" method="post" >
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-    </form>
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
+	</form>
+	<c:if test="${pageContext.request.userPrincipal.name != null}">
         <a href="javascript:document.getElementById('logout').submit()">Logout</a>
-    </c:if>
-
+	</c:if>
 </body>
 </html>
