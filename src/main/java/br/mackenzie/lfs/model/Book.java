@@ -3,31 +3,44 @@ package br.mackenzie.lfs.model;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import br.mackenzie.lfs.init.LocalDateTimeConverter;
+
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String title;
 
     @Column(nullable = false)
     private String author;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
+    @CreatedDate
+    @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime dateWhenRegistered;
 
     @Column(nullable = false)
+    @LastModifiedDate
+    @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime dateWhenLastEdited;
 
-    public Book () {}
+    public Book () { }
 
     public Book(Long id, String title, String author, LocalDateTime dateWhenRegistered, LocalDateTime dateWhenLastEdited) {
         this.id = id;

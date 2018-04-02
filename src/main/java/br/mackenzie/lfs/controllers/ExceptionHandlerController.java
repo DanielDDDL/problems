@@ -1,12 +1,12 @@
 package br.mackenzie.lfs.controllers;
 
-import br.mackenzie.lfs.exceptions.DatabaseException;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import br.mackenzie.lfs.exceptions.DatabaseException;
 
 @Controller
 public class ExceptionHandlerController {

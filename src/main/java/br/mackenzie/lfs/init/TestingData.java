@@ -12,8 +12,6 @@ import org.springframework.stereotype.Component;
 
 import br.mackenzie.lfs.Application;
 import br.mackenzie.lfs.dao.BookRepository;
-import br.mackenzie.lfs.model.Book;
-import br.mackenzie.lfs.model.dto.TestingDTO;
 import br.mackenzie.lfs.util.PersistedEntitiesObjectMapper;
 
 import javax.persistence.*;
@@ -36,6 +34,7 @@ public class TestingData {
     @EventListener(ApplicationReadyEvent.class)
     public void run() {
 
+<<<<<<< HEAD
         Authority adminAuthority = new Authority();
         adminAuthority.setName("ADMIN");
 
@@ -60,6 +59,44 @@ public class TestingData {
 
         userRepo.saveAndFlush(user);
 
+=======
+//        LocalDateTime initialValue = LocalDateTime.now();
+//
+//        Book book = new Book();
+//        book.setTitle("First title");
+//        book.setAuthor("First author");
+//        book.setDateWhenRegistered(initialValue);
+//        book.setDateWhenLastEdited(initialValue);
+//
+//        Book registered = repo.saveAndFlush(book);
+//        logger.info(registered.toString());
+
+//        UpdateBookDTO updateBook = new UpdateBookDTO();
+//        updateBook.setId(registered.getId());
+//        updateBook.setTitle("New title");
+//        updateBook.setAuthor("New author");
+//        updateBook.setDateWhenLastEdited(initialValue.plusHours(2L));
+//
+//        Book updatedBook = mapper.convertDTOToEntity(updateBook, Book.class);
+//
+//        Book newUpdatedBook = repo.saveAndFlush(updatedBook);
+//        logger.info(newUpdatedBook.toString());
+//
+//        Book gettingBook = repo.findOne(newUpdatedBook.getId());
+//        logger.info("From db: " + gettingBook.toString());
+
+//        TestingDTO testingDTO = new TestingDTO();
+//        testingDTO.setId(new Long(1));
+//        testingDTO.setTitle("Some random title");
+//        
+//        Book newUpdatedBook = mapper.convertDTOToEntity(testingDTO, Book.class);
+//        logger.info(newUpdatedBook.toString());
+//        Book updatedFromDatabase = repo.saveAndFlush(newUpdatedBook);
+//        logger.info("Final result: " + updatedFromDatabase.toString());
+        
+        
+        
+>>>>>>> e33f9fa5d0b3998d7344f5697d80edc6202a6016
     }
 
 }

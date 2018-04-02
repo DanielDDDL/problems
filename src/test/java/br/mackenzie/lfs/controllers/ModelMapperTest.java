@@ -1,17 +1,5 @@
 package br.mackenzie.lfs.controllers;
 
-import static org.junit.Assert.assertEquals;
-
-import java.time.LocalDateTime;
-
-import org.junit.Test;
-import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import br.mackenzie.lfs.model.Book;
-import br.mackenzie.lfs.model.dto.UpdateBookDTO;
-
 public class ModelMapperTest {
 
 //    Logger log = LoggerFactory.getLogger(ModelMapper.class);

@@ -16,56 +16,70 @@ import br.mackenzie.lfs.model.dto.DTO;
 @Component
 public class PersistedEntitiesObjectMapper {
 
-    private EntityManager entityManager;
-    Logger log = LoggerFactory.getLogger(ModelMapper.class);
+	private EntityManager entityManager;
+	Logger log = LoggerFactory.getLogger(ModelMapper.class);
 
-    @Autowired
-    public PersistedEntitiesObjectMapper (EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+	@Autowired
+	public PersistedEntitiesObjectMapper(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 
-    /**
-     * @param entityClass, the Class defining the Entity to which the dto object will be converted to
-     * @param dto, the source object to be converted
-     * @return the converted object
-     * */
-    public <T> T convertDTOToEntity (DTO <T> dto, Class<T> entityClass) {
+	/**
+	 * @param entityClass,
+	 *            the Class defining the Entity to which the dto object will be
+	 *            converted to
+	 * @param dto,
+	 *            the source object to be converted
+	 * @return the converted object
+	 */
+	public <T,D> T convertDTOToEntity(DTO<T,D> dto, Class<T> entityClass) {
 
-        Object id = getEntityId(dto);
-        
-        T persistedObject = null;
-        
-        if(id != null) 
-        	persistedObject = entityManager.find(entityClass, id);
-        	
-        if(id == null || persistedObject == null)
-        	return dto.convertToNonExistingEntity(entityClass);
-        else
-        	return dto.convertToExistingEntity(persistedObject);
+		Object id = getEntityId(dto);
 
-    }
+		T persistedObject = null;
 
-    /**
-     * Search for the id of a given dto object
-     *
-     * @param dto, object through which fields the id annotation will be looked for
-     * @return return id as a object, if it is declared as a field; null otherwise
-     * */
-    private Object getEntityId(Object dto) {
+		if (id != null)
+			persistedObject = entityManager.find(entityClass, id);
 
-        for(Field field : dto.getClass().getDeclaredFields()) {
-            if(field.getAnnotation(Id.class) != null) {
-                try {
-                    field.setAccessible(true);
-                    return field.get(dto);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException();
-                }
-            }
-        }
+		if (id == null || persistedObject == null)
+			return dto.convertToNonExistingEntity(entityClass);
+		else
+			return dto.convertToExistingEntity(persistedObject);
 
-        return null;
+	}
 
-    }
+	public <T, D extends DTO<T,D>> D convertEntityToDTO(T entity, Class<D> dtoClass) {
+
+		try {
+			return dtoClass.newInstance().convertEntityToDto(entity, dtoClass);
+		} catch (InstantiationException | IllegalAccessException e) {
+			throw new IllegalStateException("Problem trying to instantiate a dto object");
+		}
+
+	}
+
+	/**
+	 * Search for the id of a given dto object
+	 *
+	 * @param dto,
+	 *            object through which fields the id annotation will be looked for
+	 * @return return id as a object, if it is declared as a field; null otherwise
+	 */
+	private Object getEntityId(Object dto) {
+
+		for (Field field : dto.getClass().getDeclaredFields()) {
+			if (field.getAnnotation(Id.class) != null) {
+				try {
+					field.setAccessible(true);
+					return field.get(dto);
+				} catch (IllegalAccessException e) {
+					throw new RuntimeException();
+				}
+			}
+		}
+
+		return null;
+
+	}
 
 }
